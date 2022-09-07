@@ -10,6 +10,7 @@ uniform float w; // inverse dimension of the texture - necessary to not overflow
 
 varying vec2 vTexCoord;
 
+//standard functions for type conversion
 vec4 pack(float value)
 {
     if (value == 0.0) return vec4(0);
@@ -63,48 +64,59 @@ float unpack(vec4 texel)
     return value;
 }
 
+//main logic changes occur here
 void main(void)
 {
     const int kSpan = 3;
     const int spread = kSpan / 2;
-    vec4 samp[kSpan * kSpan];
-
-    vec4 value;
-
-    // load the part of the image which will be used for convolution from texture memory
-    for (int i = -spread; i <= spread; ++i)
-    {
-        for (int j = -spread; j <= spread; ++j)
-        {
-            if ((vTexCoord.x + float(j) * w) > 1.0 ||
-                (vTexCoord.x + float(j) * w) < 0.0 ||
-                (vTexCoord.y + float(i) * w) > 1.0 ||
-                (vTexCoord.y + float(i) * w) < 0.0)
+    vec4 samp[kSpan];//it is a one dimensional array which has vec4 as its elements
+    vec4 multiplier[kSpan];//vec4 is simply the datatype like int, float, etc., of the elements inside the array
+    // int samplen = 0;
+    // int mlen=0;
+    float step=1.0/float(1+kSpan);
+    
+    vec4 value, temp;
+    //load the matrix to be convoluted
+    for(int i=-spread; i<spread; ++i){
+        // for(int j=-spread; j<spread; ++j){
+            if ((vTexCoord.x + float(i) * w) > 1.0 ||
+                (vTexCoord.x + float(i) * w) < 0.0 ||
+                (vTexCoord.y + float(0) * w) > 1.0 ||
+                (vTexCoord.y + float(0) * w) < 0.0)
             {
-                value = vec4(0.0);
+                value=vec4(0.0);
             }
-            else
-            {
-                value = texture2D(texture0, vTexCoord + vec2(float(j) * w, float(i) * w));
+            else{
+                value=texture2D(texture0, vTexCoord+vec2(float(i)*w, float(0)*w));
             }
-            samp[(i + spread) * kSpan + (j + spread)] = value;
-        }
+            samp[i+spread]=value;
+        // }
+        // ++samplen;//is it required?
     }
-
-    float result = 0.0;
-
-    float step = 1.0 / float (1 + kSpan); // how much step through the kernel texture
-
-    // do the convolution (dot product)
-    for (int i = 0; i < kSpan; ++i)
-    {
-        for (int j = 0; j < kSpan; ++j)
-        {
-            result += unpack(samp[i * kSpan + j] * 255.0) * unpack(texture2D(texture1, vec2(step * float(j + 1), step * float(i + 1))) * 255.0);
-        }
+    //significance of step variable:
+    for (int i=0; i<kSpan; ++i){
+        // for (int j=0; j<kSpan; ++j){
+            temp=texture2D(texture1, vec2(step*float(i+1), step));
+            multiplier[i]=temp;
+        // }
+        // ++mlen;
     }
-
-    // do the last transformation to float
-    gl_FragColor = pack(result);
+    //write the code for only one iteration as the fragment shader will run for each new iteration(each new result element)
+    //hence the requirement for the step variable
+    // int maximum=int max(int samplen, int mlen);
+    float prod=0.0;
+    // int finlen=samplen+mlen-1;
+    //do the convolution
+    // for (int i=0; i<finlen; ++i){
+        // int minimum=int min(int maximum, int i);
+        //minimum number of iterations required- minimum of max and i
+        // int kmax=minimum;
+        for (int k=0; k<kSpan; ++k){
+            // if (k<samplen && k<mlen){
+                prod+=unpack(samp[k]*255.0)*unpack(multiplier[k]*255.0);
+            // }
+        // }
+        // float res[i]=prod;
+    }
+    gl_FragColor=pack(prod);
 }
-

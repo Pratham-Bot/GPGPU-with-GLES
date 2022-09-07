@@ -145,12 +145,12 @@ void gpgpu_make_texture(void* buffer, int w, int h, GLuint* texId) //TODO: int t
 int gpgpu_build_program(EVertexShader vertType, EFragmentShader fragType)
 {
     int ret = 0, infoLen = 0;
-    GLchar* vShader = NULL;
-    GLchar* fShader = NULL;
+    GLchar *vShader = NULL;
+    GLchar *fShader = NULL;
     if (gpgpu_load_shaders(vertType, fragType, &vShader, &fShader) != 0)
         ERR("Could not load shader code");
 
-    g_helper.ESShaderProgram = glCreateProgram();
+    g_helper.ESShaderProgram = glCreateProgram();//link shaders
     // compile shaders
     // vertex
     GLuint vertex = glCreateShader(GL_VERTEX_SHADER);
@@ -242,3 +242,4 @@ void gpgpu_add_uniform(const char* name, float value, const char* type)
     else
         printf("UNKNOWN UNIFORM\n");
 }
+

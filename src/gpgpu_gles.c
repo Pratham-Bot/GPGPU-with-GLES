@@ -86,6 +86,7 @@ int GPGPU_API gpgpu_init(int height, int width)
 
     if (eglMakeCurrent(g_helper.display, g_helper.surface, g_helper.surface, g_helper.context) != EGL_TRUE) // EGL_NO_SURFACE??
         ERR("Could not bind the surface to context");
+    glViewport(0,0, g_helper.width, g_helper.height);    
 
     EGLint version = 0;
     eglQueryContext(g_helper.display, g_helper.context, EGL_CONTEXT_CLIENT_VERSION, &version);
@@ -143,14 +144,21 @@ int GPGPU_API gpgpu_arrayAddition(float* a1, float* a2, float* res)
     gpgpu_build_program(REGULAR, ARRAY_ADD_FLOAT);
 
     // create the geometry to draw the texture on
-    GLuint geometry;
+    GLuint geometry, VAO, EBO;
     glGenBuffers(1, &geometry);
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &EBO);
+    glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, geometry);
     glBufferData(GL_ARRAY_BUFFER, 20*sizeof(float), gpgpu_geometry, GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ARRAY_BUFFER, 6*sizeof(float), indices, GL_STATIC_DRAW);
 
     // setup the vertex position as the attribute of vertex shader
     gpgpu_add_attribute("position", 3, 20, 0);
     gpgpu_add_attribute("texCoord", 2, 20, 3);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
     // do the actual computation
     // bind textures to their respective texturing units
     // add texture uniforms to fragment shader
@@ -168,7 +176,7 @@ int GPGPU_API gpgpu_arrayAddition(float* a1, float* a2, float* res)
         ERR("Could not prepare textures");
 
     // finally draw it
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_INT, 0);
 
     //////////
     // magic happens and the data is now ready

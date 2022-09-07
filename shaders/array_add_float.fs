@@ -64,9 +64,24 @@ float unpack(vec4 texel)
 
 void main(void)
 {
-    vec4 texel1 = texture2D(texture0, vTexCoord);
-    vec4 texel2 = texture2D(texture1, vTexCoord);
-    float a1 = unpack(texel1 * 255.0); // need to rescale it before?
-    float a2 = unpack(texel2 * 255.0);
-    gl_FragColor = pack(a1 + a2);
+    float i=vTexCoord.s;
+    float j= vTexCoord.t;
+    float result= 0.0;
+    int lod=1;
+    vec2 size0= texturesize(sampler2D texture0, int lod);
+    vec2 size1= texturesize(sampler2D texture1, int lod);
+    int x= size0.t;
+    int y= size1.t;
+    for (int k=0; k<x; ++k){
+        for (int l=0; l<y; ++l){
+            result=result+unpack(texture2D(texture0, vec2(k, k/4)))*unpack(texture2D(texture1, vec2(k/2, l)));
+        }
+    }
+    gl_FragColor=pack(result);
+
+    // vec4 texel1 = texture2D(texture0, vTexCoord);
+    // vec4 texel2 = texture2D(texture1, vTexCoord);
+    // float a1 = unpack(texel1 * 255.0); // need to rescale it before?
+    // float a2 = unpack(texel2 * 255.0);
+    // gl_FragColor = pack(a1 + a2);
 }
