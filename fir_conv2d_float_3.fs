@@ -84,9 +84,9 @@ void main(void)
             }
             else
             {
-                value = texture2D(texture0, vTexCoord + vec2(float(i), float(0)));
+                value = texture2D(texture0, vTexCoord + vec2(float(i+j), float(j+i)));
             }
-            samp[i * kSpan+ j] = value;
+            samp[i * kSpan+ j] = value; 
         }
     }
     
