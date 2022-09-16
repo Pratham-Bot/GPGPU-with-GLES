@@ -34,24 +34,12 @@ int main()
     };
 
     // construct the computation chain
-    EOperation ops[] = { FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT};
-    UOperationPayloadFloat* payload = malloc(16 * sizeof(UOperationPayloadFloat)); // double the size for conv2d: for conv1D?
+    EOperation ops[] = { FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT};
+    UOperationPayloadFloat* payload = malloc(4 * sizeof(UOperationPayloadFloat)); // double the size for conv2d: for conv1D?
     payload[0].arr = kernel;
     payload[1].n = 3;
     payload[2].arr = kernel;
     payload[3].n = 3;
-    payload[4].arr=kernel;
-    payload[5].n=3;
-    payload[6].arr=kernel;
-    payload[7].n=3;
-    payload[8].arr=kernel;
-    payload[9].n=3;
-    payload[10].arr=kernel;
-    payload[11].n=3;
-    payload[12].arr=kernel;
-    payload[13].n=3;
-    payload[14].arr=kernel;
-    payload[15].n=3;
     if (gpgpu_chain_apply_float(ops, payload, 4, a1, res) != 0)
         printf("Could not do the chain computation\n");
 

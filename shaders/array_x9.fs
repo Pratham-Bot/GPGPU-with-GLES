@@ -6,9 +6,11 @@
 
 uniform sampler2D texture0;
 uniform sampler2D texture1;
+uniform float w; // inverse dimension of the texture - necessary to not overflow floats
 
-varying vec2 vTexCoord;
+varying vec2 vTexCoord;//declared in vertex shader and used as a read only variable in fragment shader
 
+//standard functions for type conversion
 vec4 pack(float value)
 {
     if (value == 0.0) return vec4(0);
@@ -62,11 +64,36 @@ float unpack(vec4 texel)
     return value;
 }
 
+//main logic changes occur here
 void main(void)
 {
-    vec4 texel1 = texture2D(texture0, vTexCoord);
-    vec4 texel2 = texture2D(texture1, vTexCoord);
-    float a1 = unpack(texel1 * 255.0); // need to rescale it before?
-    float a2 = unpack(texel2 * 255.0);
-    gl_FragColor = pack(a1 + a2);
+    const int kSpan = 3;
+    const int spread = kSpan / 2;
+    vec4 samp[kSpan*kSpan];
+    float step=1.0/float(1+kSpan);//how much to step through the second texture
+    
+    vec4 value;
+    //load the matrix to be convoluted
+    for(int i=0; i<=kSpan; ++i){
+        for(int j=0; j<=kSpan; ++j){
+            if ((vTexCoord.x + float(i)) > 1.0 ||
+                (vTexCoord.x + float(i)) < 0.0 ||
+                (vTexCoord.y + float(0)) > 1.0 ||
+                (vTexCoord.y + float(0)) < 0.0)
+            {
+                value=vec4(0.0);
+            }
+            else{
+                value=texture2D(texture0, vTexCoord+vec2(float(i), float(0)));
+            }
+            samp[i*kSpan+j]=value;
+        }
+    }
+    float prod=0.0;
+    for (int i=0; i<kSpan; ++i){
+        for (int j=0; j<kSpan; ++j){
+            prod += unpack(samp[i*kSpan+j]*255.0)*unpack(texture2D(texture1, vec2(step*float(i), step*float(0)))*255.0);     
+        }
+    }
+    gl_FragColor=pack(prod);
 }

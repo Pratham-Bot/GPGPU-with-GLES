@@ -8,7 +8,7 @@ uniform sampler2D texture0;
 uniform sampler2D texture1;
 uniform float w; // inverse dimension of the texture - necessary to not overflow floats
 
-varying vec2 vTexCoord;
+varying vec2 vTexCoord;//declared in vertex shader and used as a read only variable in fragment shader
 
 //standard functions for type conversion
 vec4 pack(float value)
@@ -69,54 +69,45 @@ void main(void)
 {
     const int kSpan = 3;
     const int spread = kSpan / 2;
-    vec4 samp[kSpan];//it is a one dimensional array which has vec4 as its elements
-    vec4 multiplier[kSpan];//vec4 is simply the datatype like int, float, etc., of the elements inside the array
-    // int samplen = 0;
-    // int mlen=0;
-    float step=1.0/float(1+kSpan);
+    vec4 samp[kSpan];
+    float step=1.0/float(1+kSpan);//how much to step through the second texture
     
-    vec4 value, temp;
+    vec4 value;
     //load the matrix to be convoluted
-    for(int i=-spread; i<spread; ++i){
+    for(int i=0; i<kSpan; ++i){
         // for(int j=-spread; j<spread; ++j){
-            if ((vTexCoord.x + float(i) * w) > 1.0 ||
-                (vTexCoord.x + float(i) * w) < 0.0 ||
-                (vTexCoord.y + float(0) * w) > 1.0 ||
-                (vTexCoord.y + float(0) * w) < 0.0)
+            if ((vTexCoord.x + float(i)) > 1.0 ||
+                (vTexCoord.x + float(i)) < 0.0 ||
+                (vTexCoord.y + float(0)) > 1.0 ||
+                (vTexCoord.y + float(0)) < 0.0)
             {
                 value=vec4(0.0);
             }
             else{
-                value=texture2D(texture0, vTexCoord+vec2(float(i)*w, float(0)*w));
+                value=texture2D(texture0, vTexCoord+vec2(float(i), float(0)));
             }
-            samp[i+spread]=value;
+            samp[i]=value;
         // }
-        // ++samplen;//is it required?
     }
-    //significance of step variable:
-    for (int i=0; i<kSpan; ++i){
-        // for (int j=0; j<kSpan; ++j){
-            temp=texture2D(texture1, vec2(step*float(i+1), step));
-            multiplier[i]=temp;
-        // }
-        // ++mlen;
-    }
-    //write the code for only one iteration as the fragment shader will run for each new iteration(each new result element)
-    //hence the requirement for the step variable
-    // int maximum=int max(int samplen, int mlen);
     float prod=0.0;
-    // int finlen=samplen+mlen-1;
-    //do the convolution
-    // for (int i=0; i<finlen; ++i){
-        // int minimum=int min(int maximum, int i);
-        //minimum number of iterations required- minimum of max and i
-        // int kmax=minimum;
-        for (int k=0; k<kSpan; ++k){
-            // if (k<samplen && k<mlen){
-                prod+=unpack(samp[k]*255.0)*unpack(multiplier[k]*255.0);
-            // }
-        // }
-        // float res[i]=prod;
+    //input length=4; filter length=3; result length=6
+    for (int i=0; i<kSpan; ++i){
+        for (int j=0; j<kSpan; ++j){
+            prod += unpack(samp[i*kSpan+j]*255.0)*unpack(texture2D(texture1, vec2(step*float(i), step))*255.0);     
+        }
     }
     gl_FragColor=pack(prod);
+    // int convlength=6;
+    // int inputlen=4;
+    // int filter=3;
+    // for (int n=0; n<convlength; ++n){
+    //     float prod=0.0;
+    //     int kmax=min (n, 4);
+    //     for (int k=0; k=kmax; ++k){
+    //         if (k<4 && n-k<3){
+    //             prod+=unpack(samp[i*kSpan+j]*255.0)*unpack(texture2D(texture1, vec2(step*float(i+1), step))*255.0);
+    //         }
+    //     }
+    //     gl_FragColor=pack(prod);
+    // }
 }

@@ -39,6 +39,7 @@ typedef enum
     // a x a
     //
     FIR_CONV2D_FLOAT,
+    MAT_MULT_INT,
 } EOperation;
 
 typedef enum
