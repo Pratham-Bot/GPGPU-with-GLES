@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include "gpgpu_gles.h"
+
+#define HEIGHT 1
+#define WIDTH 16
+
+int main()
+{
+    if (gpgpu_init(HEIGHT, WIDTH) != 0)
+    {
+        printf("Could not initialize the API\n");
+        return 0;
+    }
+
+    float* a1 = malloc(WIDTH * HEIGHT * sizeof(float));
+    float* res = malloc(WIDTH * HEIGHT * sizeof(float));
+
+    for (int i = 0; i < WIDTH * HEIGHT; ++i)
+    {
+        a1[i] = i;
+    }
+
+    printf("Data before computation: \n");
+    for (int i = 0; i < WIDTH * HEIGHT; ++i)
+    {
+        printf("%.1f ", a1[i]);
+        // if ((i + 1) % WIDTH == 0)
+        //     printf("\n");
+    }
+    printf("\n");
+
+    float kernel[3] = {
+        1.0, 1.0, 1.0
+    };
+
+    // construct the computation chain
+    EOperation ops[] = { FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT, FIR_CONV2D_FLOAT};
+    UOperationPayloadFloat* payload = malloc(16 * sizeof(UOperationPayloadFloat)); // double the size for conv2d: for conv1D?
+    payload[0].arr = kernel;
+    payload[1].n = 3;
+    payload[2].arr = kernel;
+    payload[3].n = 3;
+    payload[4].arr=kernel;
+    payload[5].n=3;
+    payload[6].arr=kernel;
+    payload[7].n=3;
+    payload[8].arr=kernel;
+    payload[9].n=3;
+    payload[10].arr=kernel;
+    payload[11].n=3;
+    payload[12].arr=kernel;
+    payload[13].n=3;
+    payload[14].arr=kernel;
+    payload[15].n=3;
+    if (gpgpu_chain_apply_float(ops, payload, 4, a1, res) != 0)
+        printf("Could not do the chain computation\n");
+
+    printf("Contents after addition: \n");
+    for (int i = 0; i < WIDTH * HEIGHT; ++i)
+    {
+        printf("%.1f ", res[i]);
+        // if ((i + 1) % WIDTH == 0)
+            // printf("\n");
+    }
+    printf("\n");
+
+    gpgpu_deinit();
+    free(payload);
+    free(a1);
+    free(res);
+    return 0;
+}
