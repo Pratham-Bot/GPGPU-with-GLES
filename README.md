@@ -51,8 +51,11 @@ Shaders are small programs that run on the Graphics Processing Unit (GPU) usuall
 
 Types of Shaders:
 Vertex Shaders: They modify vertex position, color and texture coordinates.
+
 Fragment (pixel shaders): It calculates once for each pixel.
+
 Geometry shoulder: It is the newest of the shader types. It can modify vertices, i.e, procedurally generated geometry. It allows for dynamic /procedural content generation.
+
 The three major shoulder languages that have been developed are: GLSL, HLSL and DirectX. Out of these, we have used GLSL in our project.
 
 GLSL is a C-like language with special functions and data types for performing operations on matrices and vectors. Though it is based on C, it adds many more features and functionalities with it. It supports most of the functions of the C language, however, the if’s are not handled well as the GPU is designed to run the same code in exactly the same way in parallel on multiple shader processors. Hence, it has multiple functions such as ‘step’ and ‘clamp’ that give exactly the same results. 
