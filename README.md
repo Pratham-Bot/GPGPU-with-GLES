@@ -41,8 +41,33 @@ The OpenGL Utility Toolkit Library provides high level utilities to simplify Ope
 
 ![Screenshot from 2022-10-03 00-13-17](https://user-images.githubusercontent.com/103985810/193472943-4160e0db-a4a5-452e-ae7f-907d4201d1d2.png)
 
-### GLEW:
-The OpenGL Extension Wrangler Library (GLEW) is a C/C++ extension loading library. Thus, it supplies both OpenGL functions and OpenGL extension functions, which are loaded automatically. 
+### GLFW:
+Graphics Library Framework (GLFW) allows users to create and manage OpenGL windows, while handling keyboard, mouse and joystick inputs. GLFW and FreeGLUT are alternatives to the same functions.
+
+`glfwInit()`: Initialises the GLFW library. It returns GL_TRUE if successful, otherwise GLFW_FALSE.
+
+`glfwWindowHint(int target, int hint)`: This function sets the hints for the next call to glfwCreateWindow() function. The hints, once set, retain their values, until the next call to this function.
+
+`glfwCreateWindow(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share)`: It creates a window object and its context. This function returns a pointer to this window object.
+
+![Image rendering using GLFW and GLAD](https://user-images.githubusercontent.com/103985810/193628771-726abbaa-bd88-42ab-bb2d-8f4e2a541d27.png)
+
+### EGL:
+EGL (Embedded System Graphics Library) is the interface between OpenGL ES and the underlying native display platform. Thus, it is necessary to use OpenGL. It is used to manage the different display buffers and the OpenGL ES context. This library makes it possible for OpenGL to remain platform independent as it interacts directly with the hardware without having the OpenGL to do it.
+
+This library has been used extensively in this project.
+
+### GLEW, GLAD:
+Since OpenGL is merely a specification, it is up to the driver manufacturer to implement the specification to a driver that the specific graphics card supports. OpenGL has many versions and the location of all of its functions is not known at compile-time and needs to be queried at the run-time. This process is OS-specific. To simplify this, the GLAD library is used.
+
+GLEW (OpenGL Extension Wrangler Library) is a cross-platform C/C++ extension loading library that provides an effcient mechanism to determine which extensions are supported on the platform.
+
+These libraries are pretty similar in their functions and either choice does not matter for low-level rendering operations. The choice becomes more prominent for advanced use cases.
+
+GLAD allows the user to include only those extensions which they wish to, leading to faster compile times. GLEW can detect which dependencies are available at compile time, leading to better adaptability.
+
+### GLES 2.0:
+This library has been used in this repository 
 
 All of these libraries are used to interact with the operating system to create a window and display graphics on it. The actual interaction with the GPU is done by the Shaders.
 
@@ -70,4 +95,3 @@ To visualise the changes we made could make in the fragment shader, we also trie
 ![Screenshot from 2022-09-26 11-06-22](https://user-images.githubusercontent.com/103985810/193475990-4c35f425-4fb0-40d9-8258-af547366753a.png)
 
 glslViewer is a separate project by itself and it is very interesting to note how we can experiment with it.
-
