@@ -11,7 +11,7 @@ To perform General Purpose Computations on BeagleBone Black using OpenGL ES Libr
 
 ## PROJECT ROADMAP
 
-### Clone and build the Repository
+## Clone and build the Repository
 
 Clone the repository:
 
@@ -33,24 +33,29 @@ Building the repository
 
 `make`
 
-### Sharing internet connection from linux to BeagleBone Black
+## Sharing internet connection from linux to BeagleBone Black
 
  Internet connection can be established as shown [here](https://gist.github.com/pdp7/d2711b5ff1fbb000240bd8337b859412)
  
- ## FILE STRUCTURE
+## FILE STRUCTURE
  
  
- ### Programming Languages used
+## Programming Languages used
 
 * C
 * GLSL
 
 ### Libraries Used
 * GLES 2.0
+
 * GLFW- Graphics Library Framework (GLFW) allows users to create and manage OpenGL windows, while handling keyboard, mouse and joystick inputs. GLFW and   FreeGLUT are alternatives to the same functions.
+
 * GLUT- The OpenGL Utility Toolkit Library provides high level utilities to simplify OpenGL programming, especially in interacting with the Operating       System. GLUT is designed for simple to moderately complex programs focused on OpenGL rendering.
+
 * EGL- EGL (Embedded System Graphics Library) is the interface between OpenGL ES and the underlying native display platform. 
+
 * GLEW- GLEW (OpenGL Extension Wrangler Library) is a cross-platform C/C++ extension loading library that provides an effcient mechanism to determine       which extensions are supported on the platform.
+
 * GLAD- GLAD allows the user to include only those extensions which they wish to, leading to faster compile times. GLEW can detect which dependencies are   available at compile time, leading to better adaptability.
 
 ## RESULT
