@@ -72,4 +72,16 @@ Building the repository
 * Multiplication of Array of using Scalar
 
 
+## Contributors
+* [Komal Sambhus](https://github.com/Komal0103)
+* [Pratham Deshmukh](https://github.com/Pratham-Bot)
+
+
 ## REFERENCES AND ACKNOWLEDGMENT
+* [SRA VJTI](https://sravjti.in/) Eklavya 2022.
+* Referred [This](https://docs.gl/) to understand OpenGL functions.
+* Referred [This](http://www.vizitsolutions.com/portfolio/webgl/gpgpu/matrixMultiplication.html) to understand matrix multiplication code base.
+* [This]((https://learnopengl.com/Getting-started/OpenGL)) website helped us to get the conceptual knowledge of OpenGL.
+* Offical [Website](https://learnopengl.com/Getting-started/OpenGL) of OpenGL.
+* PowerSDK [Installations](https://jduchniewicz.github.io/gsoc2021-blog/_posts/2021-06-15-installing-powervr-sdk.html) guide
+* Special Thanks to our mentors [Krishna Narayanan](https://github.com/Krishna-13-cyber) and [Kunal Agarwal](https://github.com/KunalA18) for guiding us throughout the Eklavya Journey.
