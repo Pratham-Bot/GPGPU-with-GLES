@@ -1,5 +1,7 @@
 # EKLAVYA - GPGPU with GLES 
 
+![BeagleBone Black](https://beagleboard.org/static/ti/product_detail_black_sm.jpg)
+
 ## TABLE OF CONTENTS
 
 
@@ -35,6 +37,9 @@ Building the repository
 
  Internet connection can be established as shown [here](https://gist.github.com/pdp7/d2711b5ff1fbb000240bd8337b859412)
  
+ ## FILE STRUCTURE
+ 
+ 
  ### Programming Languages used
 
 * C
@@ -42,11 +47,11 @@ Building the repository
 
 ### Libraries Used
 * GLES 2.0
-* GLFW
-* GLUT
-* EGL
-* GLEW
-* GLAD
+* GLFW- Graphics Library Framework (GLFW) allows users to create and manage OpenGL windows, while handling keyboard, mouse and joystick inputs. GLFW and   FreeGLUT are alternatives to the same functions.
+* GLUT- The OpenGL Utility Toolkit Library provides high level utilities to simplify OpenGL programming, especially in interacting with the Operating       System. GLUT is designed for simple to moderately complex programs focused on OpenGL rendering.
+* EGL- EGL (Embedded System Graphics Library) is the interface between OpenGL ES and the underlying native display platform. 
+* GLEW- GLEW (OpenGL Extension Wrangler Library) is a cross-platform C/C++ extension loading library that provides an effcient mechanism to determine       which extensions are supported on the platform.
+* GLAD- GLAD allows the user to include only those extensions which they wish to, leading to faster compile times. GLEW can detect which dependencies are   available at compile time, leading to better adaptability.
 
 ## RESULT
 
@@ -57,9 +62,14 @@ Building the repository
 ![Screenshot from 2022-10-03 00-13-23](https://user-images.githubusercontent.com/103985810/194121950-34124aea-6552-40f1-9d03-28fdea2a3d71.png)
 
 * Matrix Multiplication
+![Screenshot from 2022-10-03 02-41-15](https://user-images.githubusercontent.com/103985810/194125209-19010c2f-f1f8-4629-b8b9-1a230740811d.png)
 
 * Transpose of a matrix
 
 * Addition of a matrix with its own transpoe
+![Screenshot from 2022-10-03 02-39-08](https://user-images.githubusercontent.com/103985810/194125272-f3283282-d17c-40ed-acc5-f4029ab10f4b.png)
 
 * Multiplication of Array of using Scalar
+
+
+## REFERENCES AND ACKNOWLEDGMENT
