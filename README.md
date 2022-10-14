@@ -19,6 +19,7 @@
      * Multiplication of Array using Scalar
   * [Contributors](https://github.com/Pratham-Bot/GPGPU-with-GLES#contributors)
   * [References and Acknowledgment](https://github.com/Pratham-Bot/GPGPU-with-GLES#references-and-acknowledgment)
+  * [License](https://github.com/Pratham-Bot/GPGPU-with-GLES#license)
 
 ## AIM OF THE PROJECT
 
