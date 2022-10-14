@@ -11,10 +11,18 @@
  * [Programming Languages used](https://github.com/Pratham-Bot/GPGPU-with-GLES#programming-languages-used)
       * [Libraries Used](https://github.com/Pratham-Bot/GPGPU-with-GLES#libraries-used)
  * [Result](https://github.com/Pratham-Bot/GPGPU-with-GLES#result)
+     * Triangle using GLUT library
+     * Rectangle using GLUT library
+     * Matrix Multiplication
+     * Transpose of a matrix
+     * Addition of a matrix with its own transpoe
+     * Multiplication of Array using Scalar
+  * [Contributors](https://github.com/Pratham-Bot/GPGPU-with-GLES#contributors)
+  * [References and Acknowledgment](https://github.com/Pratham-Bot/GPGPU-with-GLES#references-and-acknowledgment)
 
 ## AIM OF THE PROJECT
 
-To perform General Purpose Computations on BeagleBone Black using OpenGL ES Library.
+Working on a library for performing GPGPU (General Purpose GPU) computations on BeagleBone Black using OpenGL ES
 
 ## PROJECT ROADMAP
 
