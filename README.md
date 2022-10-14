@@ -3,7 +3,7 @@
 ![BeagleBone Black](https://beagleboard.org/static/ti/product_detail_black_sm.jpg)
 
 ## TABLE OF CONTENTS
-
+ * [AIM OF THE PROJECT](https://github.com/Pratham-Bot/GPGPU-with-GLES#aim-of-the-project)
 
 ## AIM OF THE PROJECT
 
