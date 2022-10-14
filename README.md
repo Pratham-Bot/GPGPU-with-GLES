@@ -25,8 +25,6 @@
 
 Working on a library for performing [GPGPU](https://www.techtarget.com/whatis/definition/GPGPU-general-purpose-graphics-processing-unit) (General Purpose GPU) computations on BeagleBone Black using [OpenGLES](https://www.khronos.org/opengles/)
 
-## PROJECT ROADMAP
-
 ## Clone and build the Repository
 
 Clone the repository:
