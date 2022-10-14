@@ -54,6 +54,27 @@ Building the repository
  
 ## FILE STRUCTURE
  
+ 📦Eklavya--GPGPU with GLES
+ ┣ 📂benchmark                        #contain benchmarking applications to compare performance bbetween CPU and GPU
+ ┣ 📂cmake                            #contains open2..cmake and config file
+ ┣ 📂exmaples                         #contains .c code for computations
+ ┃ ┗ 📂array_add_fixed16              #contains array addition .c file  
+ ┃ ┗ 📂array_add_float                #contains array addition .c file
+ ┃ ┗ 📂array_x4                       #contains array multilication code by 4
+ ┃ ┗ 📂array_x9                       #contains array multilication code by 9
+ ┃ ┗ 📂chain_conv2d_float             #contains 2D convolution example
+ ┃ ┗ 📂chain_simple_float             #contains 2D convolution example
+ ┃ ┗ 📂fir_conv_float
+ ┃ ┗ 📂mult_mat_int                   #conatin logic for mmatrix multiplication
+ ┃ ┗ 📂testing                        #conatins tetsing file for benchmarking
+ ┣ 📂include                          #launch files
+ ┣ 📂shaders                          #contains .fs code to be performed on GPU
+ ┣ 📂src                              #contains source files
+   ┗ 📂include
+ ┣ 📜.gitignore
+ ┣ 📜CMakeLists.txt
+ ┣ 📜LICENSE
+ ┗ 📜README.md
  
 ## Programming Languages used
 
