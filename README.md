@@ -53,7 +53,7 @@ Building the repository
  Internet connection can be established as shown [here](https://gist.github.com/pdp7/d2711b5ff1fbb000240bd8337b859412)
  
 ## FILE STRUCTURE
- 
+ ```
  📦Eklavya--GPGPU with GLES
  ┣ 📂benchmark                        #contain benchmarking applications to compare performance bbetween CPU and GPU
  ┣ 📂cmake                            #contains open2..cmake and config file
@@ -75,7 +75,7 @@ Building the repository
  ┣ 📜CMakeLists.txt
  ┣ 📜LICENSE
  ┗ 📜README.md
- 
+ ```
 ## Programming Languages used
 
 * C
