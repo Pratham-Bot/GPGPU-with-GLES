@@ -70,6 +70,7 @@ Building the repository
 ![Screenshot from 2022-10-03 02-41-15](https://user-images.githubusercontent.com/103985810/194125209-19010c2f-f1f8-4629-b8b9-1a230740811d.png)
 
 * Transpose of a matrix
+
 ![Screenshot from 2022-10-14 13-29-36](https://user-images.githubusercontent.com/103985810/195794471-b6f0fd97-3b53-448b-a9d6-b305726e1fcf.png)
 
 
@@ -77,7 +78,9 @@ Building the repository
 ![Screenshot from 2022-10-03 02-39-08](https://user-images.githubusercontent.com/103985810/194125272-f3283282-d17c-40ed-acc5-f4029ab10f4b.png)
 
 * Multiplication of Array using Scalar
+
 ![Screenshot from 2022-10-08 23-28-33](https://user-images.githubusercontent.com/103985810/195794821-7d23b2f8-c766-4a01-92c3-131dcee87eaf.png)
+
 ![Screenshot from 2022-10-08 23-32-14](https://user-images.githubusercontent.com/103985810/195794883-05a6f270-a580-49ad-b0c1-0d1b3a3d67c7.png)
 
 
