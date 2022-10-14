@@ -9,7 +9,7 @@
  * [Sharing internet connection from linux to BeagleBone Black](https://github.com/Pratham-Bot/GPGPU-with-GLES#sharing-internet-connection-from-linux-to-beaglebone-black)
  * [File Structure](https://github.com/Pratham-Bot/GPGPU-with-GLES#file-structure)
  * [Programming Languages used](https://github.com/Pratham-Bot/GPGPU-with-GLES#programming-languages-used)
-  * [Libraries Used](https://github.com/Pratham-Bot/GPGPU-with-GLES#libraries-used)
+      * [Libraries Used](https://github.com/Pratham-Bot/GPGPU-with-GLES#libraries-used)
  * [Result](https://github.com/Pratham-Bot/GPGPU-with-GLES#result)
 
 ## AIM OF THE PROJECT
