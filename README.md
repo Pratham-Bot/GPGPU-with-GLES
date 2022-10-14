@@ -133,3 +133,6 @@ Building the repository
 * Offical [Website](https://learnopengl.com/Getting-started/OpenGL) of OpenGL.
 * PowerSDK [Installations](https://jduchniewicz.github.io/gsoc2021-blog/_posts/2021-06-15-installing-powervr-sdk.html) guide
 * Special Thanks to our mentors [Krishna Narayanan](https://github.com/Krishna-13-cyber) and [Kunal Agarwal](https://github.com/KunalA18) for guiding us throughout the Eklavya Journey.
+
+## License
+[MIT License](https://opensource.org/licenses/MIT)
