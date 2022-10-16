@@ -4,7 +4,6 @@
 
 ## TABLE OF CONTENTS
  * [Aim of the Project](https://github.com/Pratham-Bot/GPGPU-with-GLES#aim-of-the-project)
- * [Project Roadmap](https://github.com/Pratham-Bot/GPGPU-with-GLES#project-roadmap)
  * [Clone and build the Repository](https://github.com/Pratham-Bot/GPGPU-with-GLES#clone-and-build-the-repository)
  * [Sharing internet connection from linux to BeagleBone Black](https://github.com/Pratham-Bot/GPGPU-with-GLES#sharing-internet-connection-from-linux-to-beaglebone-black)
  * [File Structure](https://github.com/Pratham-Bot/GPGPU-with-GLES#file-structure)
