@@ -28,7 +28,7 @@ Working on a library for performing [GPGPU](https://www.techtarget.com/whatis/de
 
 Clone the repository:
 
-`git clone https://github.com/JDuchniewicz/GPGPU-with-GLES`
+`git clone https://github.com/Pratham-Bot/GPGPU-with-GLES.git`
 
 Create the build folder and enter it:
 
